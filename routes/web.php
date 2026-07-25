@@ -1232,8 +1232,8 @@ Route::get('/js/lang', static function () {
         }
         return '{}';
     });
-    echo('window.trans = ' . $labels);
-    exit();
+    // echo('window.trans = ' . $labels);
+    // exit();
 })->name('assets.lang');
 
 Route::get('test-code', static function () {
@@ -1250,24 +1250,24 @@ Route::get('cache-flush', static function () {
 });
 
 
-Route::get('demo-tokens', static function () {
-    echo "<pre>";
+// Route::get('demo-tokens', static function () {
+//     echo "<pre>";
 
-    $guardian = User::where('email', 'guardian@gmail.com')->first();
-    if (!empty($guardian)) {
-        echo "Demo Guardian Token<br>";
-        echo Cache::rememberForever('demoGuardianToken', static function () use ($guardian) {
-            return $guardian->createToken($guardian->first_name)->plainTextToken;
-        });
-    }
+//     $guardian = User::where('email', 'guardian@gmail.com')->first();
+//     if (!empty($guardian)) {
+//         echo "Demo Guardian Token<br>";
+//         echo Cache::rememberForever('demoGuardianToken', static function () use ($guardian) {
+//             return $guardian->createToken($guardian->first_name)->plainTextToken;
+//         });
+//     }
 
 
-    $student = User::where('email', 'student@gmail.com')->first();
-    if (!empty($student)) {
-        echo "<br><br>Demo Student Token<br>";
-        echo Cache::rememberForever('demoStudentToken', static function () use ($student) {
-            return $student->createToken($student->first_name)->plainTextToken;
-        });
-    }
-});
+//     $student = User::where('email', 'student@gmail.com')->first();
+//     if (!empty($student)) {
+//         echo "<br><br>Demo Student Token<br>";
+//         echo Cache::rememberForever('demoStudentToken', static function () use ($student) {
+//             return $student->createToken($student->first_name)->plainTextToken;
+//         });
+//     }
+// });
 
