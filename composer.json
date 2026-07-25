@@ -21,7 +21,7 @@
         "awobaz/compoships": "^2.1",
         "barryvdh/laravel-dompdf": "^2.0",
         "cboden/ratchet": "^0.4.4",
-        "doctrine/dbal": "^3.7",
+        "doctrine/dbal": "^3.10",
         "google/apiclient": "^2.16",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",

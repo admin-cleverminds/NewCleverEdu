@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::table('compulsory_fees', function (Blueprint $table) {
             //
-                $table->string('payment_transaction_id')->nullable()->change();
+                // $table->string('payment_transaction_id')->nullable()->change();
+                $table->unsignedBigInteger('payment_transaction_id')->nullable()->change();
+
 
         });
     }
@@ -25,7 +27,7 @@ return new class extends Migration
     {
         Schema::table('compulsory_fees', function (Blueprint $table) {
             //
-                $table->bigInteger('payment_transaction_id')->nullable()->change();
+                $table->unsignedBigInteger('payment_transaction_id')->nullable()->change();
 
         });
     }

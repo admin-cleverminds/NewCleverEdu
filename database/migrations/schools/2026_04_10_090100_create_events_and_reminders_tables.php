@@ -29,14 +29,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->date('date');
-            $table->integer('school_id');
-            $table->timestamps();
-        });
+        //Commnet on 25-7-2026 by abhishek in office 
+        // Schema::create('schedules', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->text('description')->nullable();
+        //     $table->date('date');
+        //     $table->integer('school_id');
+        //     $table->timestamps();
+        // });
     }
 
     /**
