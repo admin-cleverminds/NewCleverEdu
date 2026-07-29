@@ -103,11 +103,14 @@ class RoleController extends Controller {
     public function create() {
         ResponseService::noFeatureThenRedirect('Staff Management');
         ResponseService::noPermissionThenRedirect('role-create');
-        $permission = Permission::whereDoesntHave('roles', function ($q) {
-            $q->where('name', 'Teacher');
-        })->orWhereHas('roles', function ($q) {
-            $q->where('name', '!=', 'Teacher');
-        })->orderBy('name')->get();
+        // $permission = Permission::whereDoesntHave('roles', function ($q) {
+        //     $q->where('name', 'Teacher');
+        // })->orWhereHas('roles', function ($q) {
+        //     $q->where('name', '!=', 'Teacher');
+        // })->orderBy('name')->get();
+        $permission = Permission::withoutGlobalScope('school')
+        ->orderBy('name')
+        ->get();
         return view('roles.create', compact('permission'));
     }
 
@@ -155,15 +158,18 @@ class RoleController extends Controller {
         ResponseService::noPermissionThenRedirect('role-edit');
         $role = Role::findOrFail($id);
 
-        if ($role->name == "Teacher") {
-            $permission = Permission::orderBy('name')->get();
-        } else {            
-            $permission = Permission::whereDoesntHave('roles', function ($q) {
-                $q->where('name', 'Teacher');
-            })->orWhereHas('roles', function ($q) {
-                $q->where('name', '!=', 'Teacher');
-            })->orderBy('name')->get();
-        }
+        // if ($role->name == "Teacher") {
+        //     $permission = Permission::orderBy('name')->get();
+        // } else {            
+        //     $permission = Permission::whereDoesntHave('roles', function ($q) {
+        //         $q->where('name', 'Teacher');
+        //     })->orWhereHas('roles', function ($q) {
+        //         $q->where('name', '!=', 'Teacher');
+        //     })->orderBy('name')->get();
+        // }
+        $permission = Permission::withoutGlobalScope('school')
+        ->orderBy('name')
+        ->get();
 
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')->all();
 
